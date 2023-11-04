@@ -1,20 +1,22 @@
-class RockPaperScissors {
+/* eslint-disable indent */
+export class RockPaperScissors {
   constructor(username) {
     this.username = username;
-         this.score = {
+    (this.score = {
       user: 0,
-      cpu: 0 
-    },
-    this.gameHistoryLog = [];
+      cpu: 0,
+    }),
+      // eslint-disable-next-line indent
+      (this.gameHistoryLog = []);
   }
 
   /**
    * RETURN: one of the following values (`rock`, `paper`, `scissors`)
    * using Math.random() method, you should be able to get one of the following values
    */
-  generateCPUResponse(){
-      var acceptedValues = [ `rock`, `paper`, `scissors` ];
-    const randomIndexNumber = Math.floor(Math.random() * 3); 
+  generateCPUResponse() {
+    let acceptedValues = [`rock`, `paper`, `scissors`];
+    const randomIndexNumber = Math.floor(Math.random() * 3);
 
     return acceptedValues[randomIndexNumber];
   }
@@ -22,49 +24,48 @@ class RockPaperScissors {
    * returns one of the following values: `win`, `lose`, `tie`
    * tie:
    *     the user selection the same as the CPU
-   * win: 
+   * win:
    *    (user is `rock` and cpu is `scissors
    *     OR
-   *    (user is `paper` and cpu is `rock`) 
-   *     OR 
+   *    (user is `paper` and cpu is `rock`)
+   *     OR
    *    (user is `scissors` and cpu is `paper`)
    * `lose`:
    *    the opposite case :)
    * @param {string} userSelection user selection. Can only be one of the following values [`rock`, `paper`, `scissors`]
    * @param {string} cpuSelection computer selection. Can only be one of the following values [`rock`, `paper`, `scissors`]
    */
-  determineWinner(userSelection, cpuSelection){
-    if (userSelection == cpuSelection) { 
-         return 'tie'; 
-    }
-    else if(
-      (userSelection == 'paper' && cpuSelection == 'rock') || 
-      (userSelection == 'scissors' && cpuSelection == 'paper') || 
-      (userSelection == 'rock' && cpuSelection == 'scissors')
-    ) { 
-      return 'win'; 
-    }
-    else { 
-      return 'lose'; 
+  determineWinner(userSelection, cpuSelection) {
+    if (userSelection === cpuSelection) {
+      return `tie`;
+    } else if (
+      (userSelection === `paper` && cpuSelection === `rock`) ||
+      (userSelection === `scissors` && cpuSelection === `paper`) ||
+      (userSelection === `rock` && cpuSelection === `scissors`)
+    ) {
+      return `win`;
+    } else {
+      return `lose`;
     }
   }
 
   /**
-   * 
+   *
    * @param {string} userSelection user selection. Can only be one of the following values [`rock`, `paper`, `scissors`]
    */
-  play(userSelection){
-    const cpuSelection = this.generateCPUResponse(); 
-    const results = this.determineWinner(userSelection, cpuSelection); 
-    
-    if(results == 'win') { 
-       this.score.user++; 
+  play(userSelection) {
+    const cpuSelection = this.generateCPUResponse();
+    const results = this.determineWinner(userSelection, cpuSelection);
+
+    if (results === `win`) {
+      this.score.user++;
     }
-    if(results == 'lose') { 
-          this.score.cpu++; 
+    if (results === `lose`) {
+      this.score.cpu++;
     }
 
-    this.gameHistoryLog.push(` ${this.username} selected ${userSelection}. CPU selected ${cpuSelection}: ${this.username} ${results}s`);
+    this.gameHistoryLog.push(
+      ` ${this.username} selected ${userSelection}. CPU selected ${cpuSelection}: ${this.username} ${results}s`
+    );
   }
-
 }
